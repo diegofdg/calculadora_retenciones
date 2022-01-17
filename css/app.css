@@ -104,3 +104,61 @@ h1>span {
         gap: 2rem;
     }
 }
+
+/*** Formulario ***/
+
+.formulario {
+    background-color: var(--color12);
+    width: 80%;
+    margin: 2rem auto;
+    
+}
+
+.radio-button {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem;
+}
+
+fieldset {
+    margin: 1rem;
+}
+
+.boton {
+    background-color: var(--color14);
+    color: var(--blanco);
+    padding: 1rem 3rem;    
+    font-size: 2rem;
+    font-weight: bold;    
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;    
+    border: none;    
+}
+
+.boton:hover {
+    cursor: pointer;
+}
+
+@media (min-width: 576px) {
+    .input-text,
+    .boton {
+        width: 50%; 
+    }   
+}
+
+@media (min-width: 768px) {
+    .input-text,
+    .boton {
+        width: 25%;
+    }    
+}
+
+.contenido {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.ocultar {
+    display: none;
+}
