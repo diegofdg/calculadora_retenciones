@@ -1,0 +1,62 @@
+:root {
+    --blanco: #FFFFFF;
+    --negro: #000000;
+    --gris: #757575;
+    --grisClaro: #DFE9F3;
+    
+    --color01: #000428;
+    --color02: #253242;
+    --color03: #2E486B;
+    --color04: #00626d;
+    --color05: #0097a7;
+    --color06: #1178B2;
+    --color07: #638EFF;
+    --color08: #60AABB;
+    --color09: #5FC1CA;
+    --color10: #ABCBFA;
+    --color11: #84D5C6;
+    --color12: #B5DAC1;
+    --color13: #E7FAF4;
+    --color14: #851452;
+    --color15: #bb3324;
+    --color16: #EE5543;
+    --color17: #F88DA7;
+    --color18: #EBA0A0;
+    --color19: #f1b46d;
+    --color20: #fdd070;   
+
+    --fuente: 'Krub', sans-serif;
+}
+
+/*** Globales ***/
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;  
+     
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--fuente);
+    font-size: 1.6rem;
+    background: #000428;
+    background: linear-gradient(to right, var(--color06),var(--color01));
+}
+
+h1 {
+    font-size: 3.8rem;
+    font-weight: normal;
+    text-align: center;  
+    color: var(--blanco);  
+}
+
+/*** Header ***/
+
+h1>span {
+    font-weight: bold;
+    color: var(--color07);
+}
