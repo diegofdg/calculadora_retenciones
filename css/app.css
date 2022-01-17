@@ -32,8 +32,7 @@
 
 html {
     font-size: 62.5%;
-    box-sizing: border-box;  
-     
+    box-sizing: border-box;     
 }
 
 *, *:before, *:after {
@@ -44,19 +43,64 @@ body {
     font-family: var(--fuente);
     font-size: 1.6rem;
     background: #000428;
-    background: linear-gradient(to right, var(--color06),var(--color01));
+    background: linear-gradient(to right, var(--color06), var(--color01));
 }
 
 h1 {
     font-size: 3.8rem;
     font-weight: normal;
-    text-align: center;  
-    color: var(--blanco);  
+    text-align: center;   
+}
+
+a {
+    text-decoration: none;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
 }
 
 /*** Header ***/
 
+.contenedor {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.menu {
+    padding-top: 4rem;
+}
+
+.logo {
+    color: var(--blanco);
+}
+
 h1>span {
-    font-weight: bold;
-    color: var(--color07);
+    font-weight: bold;   
+}
+
+.enlace {
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--blanco);
+}
+
+@media (min-width: 768px) {
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .navegacion {
+        display: flex;
+        gap: 2rem;
+    }
 }
