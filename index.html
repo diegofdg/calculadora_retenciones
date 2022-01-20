@@ -17,19 +17,21 @@
     <title>Calculadora de Retenciones de Impuestos</title>
 </head>
 <body>    
-    <header class="contenedor">        
-        <div class="menu">
-            <a class="logo" href="index.html">
-                <h1 class="no-margin">Calculadora de <span>Retenciones</span></h1>
-            </a>
-            <nav class="navegacion">
-                <a class="enlace" href="#">Normativa Aplicable</a>
-                <a class="enlace" href="#">Sobre Mí</a>                    
-            </nav>
-        </div>        
+    <header class="contenedor">  
+        <div>
+            <div class="menu">            
+                <a class="logo menu-item" href="index.html">
+                    <h1 class="titulo-logo no-margin">Calculadora de <br> <span>Retenciones</span></h1>
+                </a>
+                <nav class="navegacion menu-item">
+                    <a class="enlace" href="#">Normativa Aplicable</a>
+                    <a class="enlace" href="#">Sobre Mí</a>                    
+                </nav>            
+            </div>        
+        </div>      
     </header>   
     
-    <form class="formulario">
+    <form class="formulario">        
         <fieldset>
             <legend>Selecciona el tipo de Factura</legend>
             <div id="radio-button"class="radio-button">
@@ -45,19 +47,38 @@
                 </div>
             </div>
         </fieldset>
+
         <fieldset>
             <legend>Escriba el Monto Total de la Factura</legend>
             <div>
                 <label for="monto-factura">Importe Total de la Factura:</label>
-                <input type="number" placeholder="Monto de la Factura" id="monto-factura" name="monto-factura"required>
+                <input type="number" placeholder="Monto de la Factura" id="monto-factura" name="monto-factura" min=0 required>
             </div>            
         </fieldset>
+
         <fieldset>
-            <legend>Impuesto a los Ingresos Brutos</legend>
-            <div id="factura-b">
+            <legend>Seleccione una retencion:</legend>
+            <div id="retenciones">
                 <div>
-                    <label for="bienes-servicios">Tipo de Operación:</label>
-                    <select id="bienes-servicios" name="bienes-servicios" class="input-text" required>
+                    <label for="retencion">Retenciones:<abel>
+                    <select id="retencion" name="retencion" class="input-text" required>
+                        <option value="" disabled selected>-- Seleccione --</option>
+                        <option value="iibb">Ingresos Brutos</option>
+                        <option value="iva">Impuesto al Valor Agregado</option>
+                        <option value="gcias">Impuesto a las Ganancias</option>
+                        <option value="sellos">Impuesto de Sellos</option>
+                        <option value="suss">Régimen Único Seguridad Social</option>
+                        <option value="ppll">Profesiones Liberales</option>
+
+                    </select>
+                </div>
+        </fieldset>
+        <fieldset id="fieldset-iibb" class="ocultar">
+            <legend>Impuesto a los Ingresos Brutos</legend>
+            <div id="iibb-factura-b" class="ocultar">
+                <div>
+                    <label for="bienes-servicios1">Tipo de Operación:</label>
+                    <select id="bienes-servicios-fb" name="bienes-servicios1" class="input-text" required>
                         <option value="" disabled selected>-- Seleccione --</option>
                         <option value="bienes">Bienes</option>
                         <option value="servicios">Servicios</option>
@@ -82,10 +103,10 @@
                     </select>
                 </div>   
             </div>
-            <div id="factura-c" class="ocultar">
-                <div id="bienes-servicios">
+            <div id="iibb-factura-c" class="ocultar">
+                <div>
                     <label for="bienes-servicios2">Tipo de Operación:</label>
-                    <select id="bienes-servicios2" name="bienes-servicios2" class="input-text" required>
+                    <select id="bienes-servicios-fc" name="bienes-servicios2" class="input-text" required>
                         <option value="" disabled selected>-- Seleccione --</option>
                         <option value="bienes">Bienes</option>
                         <option value="servicios-comunes">Servicios Comunes</option>

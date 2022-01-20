@@ -57,7 +57,7 @@ a {
 }
 
 .no-margin {
-    margin: 0;
+    margin: 0;    
 }
 
 .no-padding {
@@ -67,16 +67,18 @@ a {
 /*** Header ***/
 
 .contenedor {
-    width: 90%;
-    margin: 0 auto;
+    width: 80%;
+    margin: 0 auto;    
 }
 
-.menu {
-    padding-top: 4rem;
+.menu {    
+    margin: 1.5rem 0;
+    padding: 1rem 0;
 }
 
 .logo {
     color: var(--blanco);
+    margin: 1rem;
 }
 
 h1>span {
@@ -88,21 +90,38 @@ h1>span {
     text-align: center;
     font-size: 1.8rem;
     color: var(--blanco);
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-radius: .5rem;  
+}
+
+.enlace:hover {
+    background-color: var(--color14);
 }
 
 @media (min-width: 768px) {
     .menu {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: flex;        
+        align-items: center;        
+    }
+
+    .titulo-logo {
+        text-align: start;        
     }
 }
 
 @media (min-width: 768px) {
     .navegacion {
         display: flex;
-        gap: 2rem;
+        justify-content: flex-end;
     }
+    .navegacion a {
+        padding: 1rem 2rem;
+    }
+}
+
+.menu-item {
+    flex-grow: 1;
 }
 
 /*** Formulario ***/
@@ -110,13 +129,12 @@ h1>span {
 .formulario {
     background-color: var(--color12);
     width: 80%;
-    margin: 2rem auto;
-    
+    margin: 1rem auto;    
 }
 
 .radio-button {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;    
     margin: 1rem;
 }
 
@@ -134,7 +152,8 @@ fieldset {
     text-transform: uppercase;
     text-align: center;
     width: 100%;    
-    border: none;    
+    border: none;  
+    border-radius: .5rem;  
 }
 
 .boton:hover {
