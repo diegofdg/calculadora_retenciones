@@ -142,42 +142,82 @@ fieldset {
     margin: 1rem;
 }
 
+.contenido {    
+    margin: 0 1rem;
+}
+
 .boton {
     background-color: var(--color14);
-    color: var(--blanco);
-    padding: 1rem 3rem;    
-    font-size: 2rem;
+    color: var(--blanco);    
+    padding: 1rem;   
+    font-size: 1.6rem;
     font-weight: bold;    
     text-decoration: none;
     text-transform: uppercase;
     text-align: center;
-    width: 100%;    
+    width: 100%;        
     border: none;  
-    border-radius: .5rem;  
+    border-radius: .5rem;
 }
 
 .boton:hover {
     cursor: pointer;
 }
 
+.boton:last-child {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 @media (min-width: 576px) {
     .input-text,
     .boton {
         width: 50%; 
+        margin-bottom: 1rem;        
+    } 
+    .boton:last-child {
+        margin-top: 0;        
+    }  
+    .contenido {
+        display: flex;
+        justify-content: flex-start;
+        gap: 5rem;
     }   
 }
 
 @media (min-width: 768px) {
-    .input-text,
-    .boton {
+    .input-text {
         width: 25%;
-    }    
-}
-
-.contenido {
-    padding: 0 1rem 1rem 1rem;
+    }
+    .boton {
+        width: 33%;        
+    }     
 }
 
 .ocultar {
     display: none;
+}
+
+.resultado {
+    padding: 1rem;
+    background-color: #a6fc8c;
+    display: none;
+}
+
+/*** Footer ***/
+
+.footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 1.6rem;
+    color: #FFFFFF;    
+ }
+
+.footer .corazon {  
+    color: red;
+    font-weight: bold;
+}
+  
+.footer span {  
+    font-weight: bold;
 }

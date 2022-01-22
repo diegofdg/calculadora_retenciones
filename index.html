@@ -30,101 +30,129 @@
             </div>        
         </div>      
     </header>   
+
+    <main>        
+        <form class="formulario">        
+            <fieldset>
+                <legend>Selecciona el tipo de Factura</legend>
+                <div id="radio-button" class="radio-button">
+                    <div>
+                        <label>Factura B</label>
+                            <input type="radio" name="tipo" value="fb" checked>
+                        </label>
+                    </div>
+                    <div>
+                        <label>Factura C</label>
+                            <input type="radio" name="tipo" value="fc">
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
     
-    <form class="formulario">        
-        <fieldset>
-            <legend>Selecciona el tipo de Factura</legend>
-            <div id="radio-button"class="radio-button">
+            <fieldset>
+                <legend>Escriba el Monto Total de la Factura</legend>
                 <div>
-                    <label>Factura B</label>
-                        <input type="radio" name="tipo" value="fb" checked>
-                    </label>
+                    <label for="monto-factura">Importe Total de la Factura:</label>
+                    <input type="number" placeholder="Monto de la Factura" id="monto-factura" name="monto-factura" min=0 required>
+                </div>            
+            </fieldset>
+    
+            <fieldset>
+                <legend>Seleccione una retencion:</legend>
+                <div id="retenciones">
+                    <div>
+                        <label for="retencion">Retenciones:<abel>
+                        <select id="retencion" name="retencion" class="input-text" required>
+                            <option value="" disabled selected>-- Seleccione --</option>
+                            <option value="iibb">Ingresos Brutos</option>
+                            <option value="iva">Impuesto al Valor Agregado</option>
+                            <option value="gcias">Impuesto a las Ganancias</option>
+                            <option value="sellos">Impuesto de Sellos</option>
+                            <option value="suss">Régimen Único Seguridad Social</option>
+                            <option value="ppll">Profesiones Liberales</option>
+    
+                        </select>
+                    </div>
+            </fieldset>
+            <fieldset id="fieldset-iibb" class="ocultar">
+                <legend>Impuesto a los Ingresos Brutos</legend>
+                <div id="iibb-factura-b" class="ocultar">
+                    <div>
+                        <label for="tipo-operacion-1">Tipo de Operación:</label>
+                        <select id="tipo-operacion-iibb-fb" name="tipo-operacion-1" class="input-text" required>
+                            <option value="" disabled selected>-- Seleccione --</option>
+                            <option value="bienes">Bienes</option>
+                            <option value="servicios">Servicios</option>
+                            <option value="excluido">No alcanzada</option>
+                        </select>
+                    </div>                
+                    <div>
+                        <label for="alicuota-iva">Alicuota de IVA de la Operación:</label>
+                        <select id="alicuota-iva" name="alicuota-iva" class="input-text" required>
+                            <option value="" disabled selected>-- Seleccione --</option>
+                            <option value="general">Alícuota General (21%)</option>
+                            <option value="reducida">Alícuota Reducida (10.5%)</option>
+                        </select>
+                    </div>   
+                    <div>
+                        <label for="inscripcion-iibb">Tipo de Inscripción:</label>
+                        <select id="inscripcion-iibb" name="inscripcion-iibb" class="input-text" required>
+                            <option value="" disabled selected>-- Seleccione --</option>
+                            <option value="inscripto">Inscripto en IIBB</option>
+                            <option value="convenio-multilateral">Inscripto en Convenio Multilateral</option>
+                            <option value="no-inscripto">No Inscripto</option>
+                        </select>
+                    </div>   
                 </div>
-                <div>
-                    <label>Factura C</label>
-                        <input type="radio" name="tipo" value="fc">
-                    </label>
+                <div id="iibb-factura-c" class="ocultar">
+                    <div>
+                        <label for="tipo-operacion-2">Tipo de Operación:</label>
+                        <select id="tipo-operacion-iibb-fc" name="tipo-operacion-2" class="input-text" required>
+                            <option value="" disabled selected>-- Seleccione --</option>
+                            <option value="bienes">Bienes</option>
+                            <option value="servicios-comunes">Servicios Comunes</option>
+                            <option value="contratos">Contratos de Locación de Obra</option>
+                            <option value="no-inscripto">Contribuyente No Inscripto</option>
+                            <option value="excluido">No alcanzada</option>
+                        </select>
+                    </div>
                 </div>
+            </fieldset>
+    
+            <fieldset id="fieldset-iva" class="ocultar">
+                <legend>Impuesto al Valor Agregado</legend>
+                <div id="iva-factura-b" class="ocultar">
+                    <div>
+                        <label for="tipo-operacion-3">Tipo de Operación:</label>
+                        <select id="tipo-operacion-iva-fb" name="tipo-operacion-3" class="input-text" required>
+                            <option value="" disabled selected>-- Seleccione --</option>
+                            <option value="bienes-21">Bienes Gravados al 21%</option>
+                            <option value="bienes-105">Bienes Gravados al 10.5%</option>
+                            <option value="servicios-21">Servicios Gravados al 21%</option>
+                            <option value="servicios-105">Servicios Gravados al 10.5%</option>
+                            <option value="excluido">No alcanzada</option>
+                        </select>
+                    </div>
+                </div>            
+            </fieldset>
+    
+            <div class="contenido">
+                <input id="calcular" type="button" class="boton" value="Calcular">
+                <input id="limpiar" type="button" class="boton" value="Nueva Retención">
             </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>Escriba el Monto Total de la Factura</legend>
-            <div>
-                <label for="monto-factura">Importe Total de la Factura:</label>
-                <input type="number" placeholder="Monto de la Factura" id="monto-factura" name="monto-factura" min=0 required>
-            </div>            
-        </fieldset>
-
-        <fieldset>
-            <legend>Seleccione una retencion:</legend>
-            <div id="retenciones">
-                <div>
-                    <label for="retencion">Retenciones:<abel>
-                    <select id="retencion" name="retencion" class="input-text" required>
-                        <option value="" disabled selected>-- Seleccione --</option>
-                        <option value="iibb">Ingresos Brutos</option>
-                        <option value="iva">Impuesto al Valor Agregado</option>
-                        <option value="gcias">Impuesto a las Ganancias</option>
-                        <option value="sellos">Impuesto de Sellos</option>
-                        <option value="suss">Régimen Único Seguridad Social</option>
-                        <option value="ppll">Profesiones Liberales</option>
-
-                    </select>
-                </div>
-        </fieldset>
-        <fieldset id="fieldset-iibb" class="ocultar">
-            <legend>Impuesto a los Ingresos Brutos</legend>
-            <div id="iibb-factura-b" class="ocultar">
-                <div>
-                    <label for="bienes-servicios1">Tipo de Operación:</label>
-                    <select id="bienes-servicios-fb" name="bienes-servicios1" class="input-text" required>
-                        <option value="" disabled selected>-- Seleccione --</option>
-                        <option value="bienes">Bienes</option>
-                        <option value="servicios">Servicios</option>
-                        <option value="excluido">No alcanzada</option>
-                    </select>
-                </div>                
-                <div>
-                    <label for="alicuota-iva">Alicuota de IVA de la Operación:</label>
-                    <select id="alicuota-iva" name="alicuota-iva" class="input-text" required>
-                        <option value="" disabled selected>-- Seleccione --</option>
-                        <option value="general">Alícuota General (21%)</option>
-                        <option value="reducida">Alícuota Reducida (10.5%)</option>
-                    </select>
-                </div>   
-                <div>
-                    <label for="inscripcion-iibb">Tipo de Inscripción:</label>
-                    <select id="inscripcion-iibb" name="inscripcion-iibb" class="input-text" required>
-                        <option value="" disabled selected>-- Seleccione --</option>
-                        <option value="inscripto">Inscripto en IIBB</option>
-                        <option value="convenio-multilateral">Inscripto en Convenio Multilateral</option>
-                        <option value="no-inscripto">No Inscripto</option>
-                    </select>
-                </div>   
-            </div>
-            <div id="iibb-factura-c" class="ocultar">
-                <div>
-                    <label for="bienes-servicios2">Tipo de Operación:</label>
-                    <select id="bienes-servicios-fc" name="bienes-servicios2" class="input-text" required>
-                        <option value="" disabled selected>-- Seleccione --</option>
-                        <option value="bienes">Bienes</option>
-                        <option value="servicios-comunes">Servicios Comunes</option>
-                        <option value="contratos">Contratos de Locación de Obra</option>
-                        <option value="no-inscripto">Contribuyente No Inscripto</option>
-                        <option value="excluido">No alcanzada</option>
-                    </select>
-                </div>
-            </div>
-        </fieldset>
-        <div class="contenido">
-            <input id="calcular" type="button" class="boton" value="Calcular">
+            
+        </form>
+        
+        <div id="resultado" class="formulario resultado">
         </div>
-        <div id="resultado">        
-        </div>
-  </form> 
+    </main>
     
-    
+    <footer class="footer">
+        <p>Hecho con <span class="corazon">❤</span> por <span>Diego Fabián Di Giorgio</span> | &copy; 2022</p>
+    </footer>
+       
     <script src="js/app.js"></script>
+    <script src="js/retencionesIIBB.js"></script>
+    <script src="js/retencionesIVA.js"></script>
 </body>
 </html>
