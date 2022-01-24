@@ -1,4 +1,4 @@
-console.log('aplicación iniciada');
+ console.log('aplicación iniciada');
 
 const radioButtons = document.querySelectorAll('input[name="tipo"]');
 const inputMonto = document.getElementById('monto-factura');
@@ -11,6 +11,9 @@ const iibbFacturaC = document.getElementById('iibb-factura-c');
 
 const fieldsetIVA = document.getElementById('fieldset-iva');
 const ivaFacturaB = document.getElementById('iva-factura-b');
+
+const fieldsetGCIAS = document.getElementById('fieldset-gcias');
+const gciasFacturaB = document.getElementById('gcias-factura-b');
 
 const btnCalcular = document.getElementById('calcular');
 const btnLimpiar = document.getElementById('limpiar');
@@ -30,6 +33,11 @@ let objetoFactura = {
         se_calcula: false,
         tipo_operacion: '',        
         monto_retencion_iva: 0
+    },
+    gcias: {
+        se_calcula: false,
+        tipo_operacion: '',        
+        monto_retencion_gcias: 0
     }
 }
 
@@ -59,8 +67,13 @@ function clickRadio(){
 function clickRetencion() {    
     if(tipoRetencion.value === 'iibb'){
         fieldsetIIBB.classList.remove('ocultar');
+        objetoFactura.iibb.se_calcula = true;
+
         fieldsetIVA.classList.add('ocultar');
-        objetoFactura.iibb.se_calcula = true;        
+        objetoFactura.iva.se_calcula = false;
+
+        fieldsetGCIAS.classList.add('ocultar');
+        objetoFactura.gcias.se_calcula = false;
 
         if(objetoFactura.tipo_factura === 'fb') {
             iibbFacturaB.classList.remove('ocultar');
@@ -72,16 +85,36 @@ function clickRetencion() {
         }
 
     } else if(tipoRetencion.value === 'iva') {
-        fieldsetIIBB.classList.add('ocultar');
-        objetoFactura.iibb.se_calcula = false;
-
         fieldsetIVA.classList.remove('ocultar');
         objetoFactura.iva.se_calcula = true;
 
+        fieldsetIIBB.classList.add('ocultar');
+        objetoFactura.iibb.se_calcula = false;
+
+        fieldsetGCIAS.classList.add('ocultar');
+        objetoFactura.gcias.se_calcula = false;
+
         if(objetoFactura.tipo_factura === 'fb') {
             ivaFacturaB.classList.remove('ocultar');
+
         } else if(objetoFactura.tipo_factura === 'fc') {
             alert('Error, no se puede calcular retención de iva a una factura c');            
+        }
+    } else if(tipoRetencion.value === 'gcias'){
+        fieldsetGCIAS.classList.remove('ocultar');
+        objetoFactura.gcias.se_calcula = true;
+
+        fieldsetIVA.classList.add('ocultar');
+        objetoFactura.iva.se_calcula = false;
+
+        fieldsetIIBB.classList.add('ocultar');
+        objetoFactura.iibb.se_calcula = false;
+
+        if(objetoFactura.tipo_factura === 'fb') {
+            gciasFacturaB.classList.remove('ocultar');
+
+        } else if(objetoFactura.tipo_factura === 'fc') {
+            alert('Error, no se puede calcular retención de ganancias a una factura c');            
         }
 
     } else {
@@ -90,6 +123,9 @@ function clickRetencion() {
 
         fieldsetIVA.classList.add('ocultar');
         objetoFactura.iva.se_calcula = false;
+
+        fieldsetGCIAS.classList.add('ocultar');
+        objetoFactura.gcias.se_calcula = false;
     }
 }
 
@@ -106,8 +142,12 @@ function limpiar() {
     fieldsetIIBB.classList.add('ocultar');
     iibbFacturaB.classList.add('ocultar');
     iibbFacturaC.classList.add('ocultar');
+
     fieldsetIVA.classList.add('ocultar');
     ivaFacturaB.classList.add('ocultar');
+
+    fieldsetGCIAS.classList.add('ocultar');
+    gciasFacturaB.classList.add('ocultar');
 
     const divResultadoAnterior = document.querySelector('#resultado div');
     if(divResultadoAnterior !== null) {
@@ -130,6 +170,11 @@ function limpiar() {
             se_calcula: false,
             tipo_operacion: '',        
             monto_retencion_iva: 0
+        },
+        gcias: {
+            se_calcula: false,
+            tipo_operacion: '',        
+            monto_retencion_gcias: 0
         }
     }
 }
@@ -160,7 +205,10 @@ function calcularRetenciones() {
                 
             } else if(objetoFactura.iva.se_calcula) {
                 retencionesIVA();
-                
+
+            } else if(objetoFactura.gcias.se_calcula) {
+                retencionesGCIAS();
+
             } else {
                 console.log('no pasaste la validacion de retenciones');            
             }

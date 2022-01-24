@@ -135,6 +135,23 @@
                     </div>
                 </div>            
             </fieldset>
+
+            <fieldset id="fieldset-gcias" class="ocultar">
+                <legend>Impuesto a las Ganancias</legend>
+                <div id="gcias-factura-b" class="ocultar">
+                    <div>
+                        <label for="tipo-operacion-4">Tipo de Operación:</label>
+                        <select id="tipo-operacion-gcias-fb" name="tipo-operacion-4" class="input-text" required>
+                            <option value="" disabled selected>-- Seleccione --</option>
+                            <option value="bienes-21">Bienes Gravados al 21%</option>
+                            <option value="bienes-105">Bienes Gravados al 10.5%</option>
+                            <option value="servicios-21">Servicios Gravados al 21%</option>
+                            <option value="servicios-105">Servicios Gravados al 10.5%</option>
+                            <option value="excluido">No alcanzada</option>
+                        </select>
+                    </div>
+                </div>            
+            </fieldset>
     
             <div class="contenido">
                 <input id="calcular" type="button" class="boton" value="Calcular">
@@ -154,5 +171,6 @@
     <script src="js/app.js"></script>
     <script src="js/retencionesIIBB.js"></script>
     <script src="js/retencionesIVA.js"></script>
+    <script src="js/retencionesGCIAS.js"></script>
 </body>
 </html>

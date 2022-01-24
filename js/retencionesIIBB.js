@@ -87,9 +87,18 @@ function retencionesIIBB() {
             montoRetencion = 0;
         }
         document.getElementById('tipo-operacion-iibb-fc').options.item(0).selected = 'selected';
-        tipoRetencion.options.item(0).selected = 'selected';
-        
+        tipoRetencion.options.item(0).selected = 'selected';        
     }
+    
+    fieldsetIIBB.classList.add('ocultar');
+    iibbFacturaB.classList.add('ocultar');
+    iibbFacturaC.classList.add('ocultar');
+
+    fieldsetIVA.classList.add('ocultar');
+    ivaFacturaB.classList.add('ocultar');
+
+    fieldsetGCIAS.classList.add('ocultar');
+    gciasFacturaB.classList.add('ocultar');        
 }
 
 function calcularRetencionesIIBB(monto,tipo,alicuota,inscripcion,minimo){
