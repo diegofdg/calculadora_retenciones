@@ -152,6 +152,31 @@
                     </div>
                 </div>            
             </fieldset>
+
+            <fieldset id="fieldset-suss" class="ocultar">
+                <legend>Sistema Único de Seguridad Social</legend>
+                <div id="suss-factura-b" class="ocultar">
+                    <div>
+                        <label for="tipo-operacion-5">Tipo de Operación:</label>
+                        <select id="tipo-operacion-suss-fb" name="tipo-operacion-5" class="input-text" required>
+                            <option value="" disabled selected>-- Seleccione --</option>
+                            <option value="empleadores">Empleadores</option>
+                            <option value="limpieza">Servicios de Limpieza</option>
+                            <option value="ingenieria">Empresas Constructoras - Ingenieria</option>
+                            <option value="arquitectura">Empresas Constructoras - Arquitectura</option>
+                            <option value="excluido">No alcanzada</option>
+                        </select>
+                    </div>                
+                    <div>
+                        <label for="alicuota-iva2">Alicuota de IVA de la Operación:</label>
+                        <select id="alicuota-iva2" name="alicuota-iva2" class="input-text" required>
+                            <option value="" disabled selected>-- Seleccione --</option>
+                            <option value="general">Alícuota General (21%)</option>
+                            <option value="reducida">Alícuota Reducida (10.5%)</option>
+                        </select>
+                    </div>                       
+                </div>                
+            </fieldset>
     
             <div class="contenido">
                 <input id="calcular" type="button" class="boton" value="Calcular">
@@ -172,5 +197,6 @@
     <script src="js/retencionesIIBB.js"></script>
     <script src="js/retencionesIVA.js"></script>
     <script src="js/retencionesGCIAS.js"></script>
+    <script src="js/retencionesSUSS.js"></script>
 </body>
 </html>

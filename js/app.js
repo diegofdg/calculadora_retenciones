@@ -1,11 +1,12 @@
- console.log('aplicación iniciada');
+console.log('aplicación iniciada');
 
 const radioButtons = document.querySelectorAll('input[name="tipo"]');
 const inputMonto = document.getElementById('monto-factura');
 const inputRetencion = document.querySelectorAll('select[name="retencion"]');
 
-const fieldsetIIBB = document.getElementById('fieldset-iibb');
 const tipoRetencion = document.getElementById('retencion');
+
+const fieldsetIIBB = document.getElementById('fieldset-iibb');
 const iibbFacturaB = document.getElementById('iibb-factura-b');
 const iibbFacturaC = document.getElementById('iibb-factura-c');
 
@@ -14,6 +15,9 @@ const ivaFacturaB = document.getElementById('iva-factura-b');
 
 const fieldsetGCIAS = document.getElementById('fieldset-gcias');
 const gciasFacturaB = document.getElementById('gcias-factura-b');
+
+const fieldsetSUSS = document.getElementById('fieldset-suss');
+const sussFacturaB = document.getElementById('suss-factura-b');
 
 const btnCalcular = document.getElementById('calcular');
 const btnLimpiar = document.getElementById('limpiar');
@@ -38,6 +42,12 @@ let objetoFactura = {
         se_calcula: false,
         tipo_operacion: '',        
         monto_retencion_gcias: 0
+    },
+    suss: {
+        se_calcula: false,
+        tipo_operacion: '',
+        alicuotaIVA: '',        
+        monto_retencion_suss: 0
     }
 }
 
@@ -75,6 +85,9 @@ function clickRetencion() {
         fieldsetGCIAS.classList.add('ocultar');
         objetoFactura.gcias.se_calcula = false;
 
+        fieldsetSUSS.classList.add('ocultar');
+        objetoFactura.suss.se_calcula = false;
+
         if(objetoFactura.tipo_factura === 'fb') {
             iibbFacturaB.classList.remove('ocultar');
             iibbFacturaC.classList.add('ocultar');
@@ -94,6 +107,9 @@ function clickRetencion() {
         fieldsetGCIAS.classList.add('ocultar');
         objetoFactura.gcias.se_calcula = false;
 
+        fieldsetSUSS.classList.add('ocultar');
+        objetoFactura.suss.se_calcula = false;
+
         if(objetoFactura.tipo_factura === 'fb') {
             ivaFacturaB.classList.remove('ocultar');
 
@@ -110,11 +126,34 @@ function clickRetencion() {
         fieldsetIIBB.classList.add('ocultar');
         objetoFactura.iibb.se_calcula = false;
 
+        fieldsetSUSS.classList.add('ocultar');
+        objetoFactura.suss.se_calcula = false;
+
         if(objetoFactura.tipo_factura === 'fb') {
             gciasFacturaB.classList.remove('ocultar');
 
         } else if(objetoFactura.tipo_factura === 'fc') {
             alert('Error, no se puede calcular retención de ganancias a una factura c');            
+        }
+    } else if(tipoRetencion.value === 'suss'){
+        
+        fieldsetSUSS.classList.remove('ocultar');
+        objetoFactura.suss.se_calcula = true;
+
+        fieldsetIVA.classList.add('ocultar');
+        objetoFactura.iva.se_calcula = false;
+
+        fieldsetIIBB.classList.add('ocultar');
+        objetoFactura.iibb.se_calcula = false;
+
+        fieldsetGCIAS.classList.add('ocultar');
+        objetoFactura.gcias.se_calcula = false;  
+        
+        if(objetoFactura.tipo_factura === 'fb') {
+            sussFacturaB.classList.remove('ocultar');
+
+        } else if(objetoFactura.tipo_factura === 'fc') {
+            alert('Error, no se puede calcular retención de suss a una factura c');            
         }
 
     } else {
@@ -149,6 +188,9 @@ function limpiar() {
     fieldsetGCIAS.classList.add('ocultar');
     gciasFacturaB.classList.add('ocultar');
 
+    fieldsetSUSS.classList.add('ocultar');
+    sussFacturaB.classList.add('ocultar');
+
     const divResultadoAnterior = document.querySelector('#resultado div');
     if(divResultadoAnterior !== null) {
         divResultadoAnterior.remove();
@@ -175,6 +217,12 @@ function limpiar() {
             se_calcula: false,
             tipo_operacion: '',        
             monto_retencion_gcias: 0
+        },
+        suss: {
+            se_calcula: false,
+            tipo_operacion: '',
+            alicuotaIVA: '',        
+            monto_retencion_suss: 0
         }
     }
 }
@@ -208,6 +256,9 @@ function calcularRetenciones() {
 
             } else if(objetoFactura.gcias.se_calcula) {
                 retencionesGCIAS();
+
+            } else if(objetoFactura.suss.se_calcula) {                
+                retencionesSUSS();
 
             } else {
                 console.log('no pasaste la validacion de retenciones');            
