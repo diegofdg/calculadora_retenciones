@@ -153,6 +153,20 @@
                 </div>            
             </fieldset>
 
+            <fieldset id="fieldset-sellos" class="ocultar">
+                <legend>Impuesto de Sellos</legend>
+                <div id="sellos-factura" class="ocultar">
+                    <div>
+                        <label for="tipo-operacion-6">Tipo de Operación:</label>
+                        <select id="tipo-operacion-sellos" name="tipo-operacion-6" class="input-text" required>
+                            <option value="" disabled selected>-- Seleccione --</option>
+                            <option value="gravada">Gravada</option>
+                            <option value="excluido">No alcanzada</option>
+                        </select>
+                    </div>
+                </div>                
+            </fieldset>
+
             <fieldset id="fieldset-suss" class="ocultar">
                 <legend>Sistema Único de Seguridad Social</legend>
                 <div id="suss-factura-b" class="ocultar">
@@ -198,5 +212,6 @@
     <script src="js/retencionesIVA.js"></script>
     <script src="js/retencionesGCIAS.js"></script>
     <script src="js/retencionesSUSS.js"></script>
+    <script src="js/retencionesSELLOS.js"></script>
 </body>
 </html>

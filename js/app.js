@@ -19,6 +19,9 @@ const gciasFacturaB = document.getElementById('gcias-factura-b');
 const fieldsetSUSS = document.getElementById('fieldset-suss');
 const sussFacturaB = document.getElementById('suss-factura-b');
 
+const fieldsetSELLOS = document.getElementById('fieldset-sellos');
+const sellosFactura = document.getElementById('sellos-factura');
+
 const btnCalcular = document.getElementById('calcular');
 const btnLimpiar = document.getElementById('limpiar');
 const divResultado = document.getElementById('resultado');
@@ -48,6 +51,11 @@ let objetoFactura = {
         tipo_operacion: '',
         alicuotaIVA: '',        
         monto_retencion_suss: 0
+    },
+    sellos: {
+        se_calcula: false,
+        tipo_operacion: '',        
+        monto_retencion_sellos: 0
     }
 }
 
@@ -88,6 +96,9 @@ function clickRetencion() {
         fieldsetSUSS.classList.add('ocultar');
         objetoFactura.suss.se_calcula = false;
 
+        fieldsetSELLOS.classList.add('ocultar');
+        objetoFactura.sellos.se_calcula = false;
+
         if(objetoFactura.tipo_factura === 'fb') {
             iibbFacturaB.classList.remove('ocultar');
             iibbFacturaC.classList.add('ocultar');
@@ -110,6 +121,9 @@ function clickRetencion() {
         fieldsetSUSS.classList.add('ocultar');
         objetoFactura.suss.se_calcula = false;
 
+        fieldsetSELLOS.classList.add('ocultar');
+        objetoFactura.sellos.se_calcula = false;
+
         if(objetoFactura.tipo_factura === 'fb') {
             ivaFacturaB.classList.remove('ocultar');
 
@@ -128,6 +142,9 @@ function clickRetencion() {
 
         fieldsetSUSS.classList.add('ocultar');
         objetoFactura.suss.se_calcula = false;
+
+        fieldsetSELLOS.classList.add('ocultar');
+        objetoFactura.sellos.se_calcula = false;
 
         if(objetoFactura.tipo_factura === 'fb') {
             gciasFacturaB.classList.remove('ocultar');
@@ -148,6 +165,9 @@ function clickRetencion() {
 
         fieldsetGCIAS.classList.add('ocultar');
         objetoFactura.gcias.se_calcula = false;  
+
+        fieldsetSELLOS.classList.add('ocultar');
+        objetoFactura.sellos.se_calcula = false;
         
         if(objetoFactura.tipo_factura === 'fb') {
             sussFacturaB.classList.remove('ocultar');
@@ -155,6 +175,23 @@ function clickRetencion() {
         } else if(objetoFactura.tipo_factura === 'fc') {
             alert('Error, no se puede calcular retención de suss a una factura c');            
         }
+    } else if(tipoRetencion.value === 'sellos'){
+        fieldsetSELLOS.classList.remove('ocultar');
+        objetoFactura.sellos.se_calcula = true;
+
+        fieldsetSUSS.classList.add('ocultar');
+        objetoFactura.suss.se_calcula = false;
+
+        fieldsetIVA.classList.add('ocultar');
+        objetoFactura.iva.se_calcula = false;
+
+        fieldsetIIBB.classList.add('ocultar');
+        objetoFactura.iibb.se_calcula = false;
+
+        fieldsetGCIAS.classList.add('ocultar');
+        objetoFactura.gcias.se_calcula = false;  
+
+        sellosFactura.classList.remove('ocultar');            
 
     } else {
         fieldsetIIBB.classList.add('ocultar');
@@ -165,6 +202,12 @@ function clickRetencion() {
 
         fieldsetGCIAS.classList.add('ocultar');
         objetoFactura.gcias.se_calcula = false;
+
+        fieldsetSUSS.classList.add('ocultar');
+        objetoFactura.suss.se_calcula = false;
+
+        fieldsetSELLOS.classList.add('ocultar');
+        objetoFactura.sellos.se_calcula = false;
     }
 }
 
@@ -190,6 +233,9 @@ function limpiar() {
 
     fieldsetSUSS.classList.add('ocultar');
     sussFacturaB.classList.add('ocultar');
+
+    fieldsetSELLOS.classList.add('ocultar');
+    sellosFactura.classList.add('ocultar');    
 
     const divResultadoAnterior = document.querySelector('#resultado div');
     if(divResultadoAnterior !== null) {
@@ -223,6 +269,11 @@ function limpiar() {
             tipo_operacion: '',
             alicuotaIVA: '',        
             monto_retencion_suss: 0
+        },
+        sellos: {
+            se_calcula: false,
+            tipo_operacion: '',        
+            monto_retencion_sellos: 0
         }
     }
 }
@@ -259,6 +310,9 @@ function calcularRetenciones() {
 
             } else if(objetoFactura.suss.se_calcula) {                
                 retencionesSUSS();
+
+            } else if(objetoFactura.sellos.se_calcula) {                
+                retencionesSELLOS();
 
             } else {
                 console.log('no pasaste la validacion de retenciones');            
