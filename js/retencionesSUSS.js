@@ -61,9 +61,16 @@ function retencionesSUSS() {
 
     fieldsetGCIAS.classList.add('ocultar');
     gciasFacturaB.classList.add('ocultar');
+    
+    fieldsetSELLOS.classList.add('ocultar');
+    sellosFactura.classList.add('ocultar');        
 
     fieldsetSUSS.classList.add('ocultar');
     sussFacturaB.classList.add('ocultar');
+
+    fieldsetPPLL.classList.add('ocultar');
+    ppllFacturaB.classList.add('ocultar');
+    ppllFacturaC.classList.add('ocultar');
 }
 
 function calcularRetencionesSUSS(monto,alicuota,tasa,minimo){    

@@ -19,6 +19,8 @@ function retencionesIIBB() {
                 } else if(tipo_inscripcion === 'no-inscripto') {
                     objetoFactura.iibb.monto_retencion_iibb = calcularRetencionesIIBB(monto_factura, 0.06, 1.21, 1, 600);                    
                     imprimirResultadoIIBB();
+                } else {
+                    alert('Por favor, elige un tipo de inscripción');
                 }
             } else if(alicuotaIVA === 'reducida') {
                 if(tipo_inscripcion === 'inscripto') {                    
@@ -31,6 +33,8 @@ function retencionesIIBB() {
                     objetoFactura.iibb.monto_retencion_iibb = calcularRetencionesIIBB(monto_factura, 0.06, 1.105, 1, 600);                    
                     imprimirResultadoIIBB();
                 }
+            } else {
+                alert('Por favor, elige la alícuota de iva de la operación');
             }
         } else if(tipo_operacion === 'servicios') {
             if(alicuotaIVA === 'general') {
@@ -50,7 +54,10 @@ function retencionesIIBB() {
         } else if(tipo_operacion === 'excluido') {
             montoRetencion = 0;
             alert('Error, no se calcula la retención por encontrarse la operación excluída del régimen');
+        } else {
+            alert('Por favor, elige una operación');
         }
+
         
         document.getElementById('tipo-operacion-iibb-fb').options.item(0).selected = 'selected';
     
@@ -98,7 +105,17 @@ function retencionesIIBB() {
     ivaFacturaB.classList.add('ocultar');
 
     fieldsetGCIAS.classList.add('ocultar');
-    gciasFacturaB.classList.add('ocultar');        
+    gciasFacturaB.classList.add('ocultar');
+    
+    fieldsetSELLOS.classList.add('ocultar');
+    sellosFactura.classList.add('ocultar');        
+
+    fieldsetSUSS.classList.add('ocultar');
+    sussFacturaB.classList.add('ocultar');
+
+    fieldsetPPLL.classList.add('ocultar');
+    ppllFacturaB.classList.add('ocultar');
+    ppllFacturaC.classList.add('ocultar');
 }
 
 function calcularRetencionesIIBB(monto,tipo,alicuota,inscripcion,minimo){

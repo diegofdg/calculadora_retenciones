@@ -32,6 +32,7 @@ function retencionesGCIAS() {
     }
     document.getElementById('tipo-operacion-gcias-fb').options.item(0).selected = 'selected';    
     tipoRetencion.options.item(0).selected = 'selected';
+
     fieldsetIIBB.classList.add('ocultar');
     iibbFacturaB.classList.add('ocultar');
     iibbFacturaC.classList.add('ocultar');
@@ -41,6 +42,16 @@ function retencionesGCIAS() {
 
     fieldsetGCIAS.classList.add('ocultar');
     gciasFacturaB.classList.add('ocultar');
+    
+    fieldsetSELLOS.classList.add('ocultar');
+    sellosFactura.classList.add('ocultar');        
+
+    fieldsetSUSS.classList.add('ocultar');
+    sussFacturaB.classList.add('ocultar');
+
+    fieldsetPPLL.classList.add('ocultar');
+    ppllFacturaB.classList.add('ocultar');
+    ppllFacturaC.classList.add('ocultar');
 }
 
 function calcularRetencionesGCIAS(monto,alicuota,mni,tasa,minimo){    

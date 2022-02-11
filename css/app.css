@@ -67,7 +67,7 @@ a {
 /*** Header ***/
 
 .contenedor {
-    width: 80%;
+    width: 50%;
     margin: 0 auto;    
 }
 
@@ -128,8 +128,9 @@ h1>span {
 
 .formulario {
     background-color: var(--color12);
-    width: 80%;
-    margin: 1rem auto;    
+    width: 50%;
+    margin: 1rem auto;   
+    padding-top: .5rem; 
 }
 
 .radio-button {
@@ -141,6 +142,30 @@ h1>span {
 fieldset {
     margin: 1rem;
 }
+
+.subtitulo {
+    font-weight: bold;
+    /* font-size: 2.4rem; */
+    color: var(--color14);    
+    /* padding-top: 1.5rem; */
+    /* padding-left: 1rem; */
+    /* margin-top: 0;
+    margin-bottom: 1rem; */
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.input-text {
+    width: 100%;
+    border: none;    
+    padding: .5rem;   
+    margin-bottom: 1rem; 
+}
+
 
 .contenido {    
     margin: 0 1rem;
@@ -187,7 +212,16 @@ fieldset {
 
 @media (min-width: 768px) {
     .input-text {
-        width: 25%;
+        width: 100%;
+    }
+    .boton {
+        width: 50%;        
+    }     
+}
+
+@media (min-width: 992px) {
+    .input-text {
+        width: 50%;
     }
     .boton {
         width: 33%;        
