@@ -127,7 +127,7 @@ function calcularRetencionesIIBB(monto,tipo,alicuota,inscripcion,minimo){
     }
 }
 
-function imprimirResultadoIIBB() {
+function imprimirResultadoIIBB2() {
     const divResultadoAnterior = document.querySelector('#resultado div');
     if(divResultadoAnterior !== null) {
         divResultadoAnterior.remove();
@@ -162,4 +162,47 @@ function imprimirResultadoIIBB() {
     nuevoDiv.appendChild(montoRetencionP);
     
     divResultado.appendChild(nuevoDiv);
+}
+
+function imprimirResultadoIIBB() {
+    const divResultadoAnterior = document.querySelector('#resultado div');
+    if(divResultadoAnterior !== null) {
+        divResultadoAnterior.remove();
+    }
+
+    const modalResultado = document.getElementById('resultado-modal');
+
+    const nuevoDiv = document.createElement('DIV'); 
+    nuevoDiv.classList.add('contenido-modal');
+    
+    const tipoDeFacturaP = document.createElement('LI');      
+    tipoDeFacturaP.innerHTML = `Tipo de Factura: <span>${objetoFactura.tipo_factura}</span>`;
+    nuevoDiv.appendChild(tipoDeFacturaP);
+
+    const montoFacturaP = document.createElement('LI');      
+    montoFacturaP.innerHTML = `Monto de la Factura: <span>${objetoFactura.monto_factura}</span>`;    
+    nuevoDiv.appendChild(montoFacturaP);
+
+    const bienesServiciosP = document.createElement('LI');      
+    bienesServiciosP.innerHTML = `<span>${objetoFactura.iibb.tipo_operacion}</span>`;    
+    nuevoDiv.appendChild(bienesServiciosP);
+
+    const alicuotaIVAP = document.createElement('LI');      
+    alicuotaIVAP.innerHTML = `<span>${objetoFactura.iibb.alicuotaIVA}</span>`;    
+    nuevoDiv.appendChild(alicuotaIVAP);
+
+    const inscripcionIIBBp = document.createElement('LI');      
+    inscripcionIIBBp.innerHTML = `<span>${objetoFactura.iibb.tipo_inscripcion}</span>`;    
+    nuevoDiv.appendChild(inscripcionIIBBp);
+
+    const montoRetencionP = document.createElement('LI');      
+    montoRetencionP.innerHTML = `<span>${objetoFactura.iibb.monto_retencion_iibb}</span>`;    
+    nuevoDiv.appendChild(montoRetencionP);
+    
+    modalResultado.appendChild(nuevoDiv);
+
+    /* const modalId = this.dataset.open; */
+    document.getElementById('modal').classList.add('is-visible');
+    
+
 }

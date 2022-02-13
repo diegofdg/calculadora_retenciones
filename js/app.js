@@ -29,6 +29,8 @@ const btnCalcular = document.getElementById('calcular');
 const btnLimpiar = document.getElementById('limpiar');
 const divResultado = document.getElementById('resultado');
 
+const dataClose = document.querySelector("[data-close]");
+
 let objetoFactura = {
     tipo_factura: '',
     monto_factura: 0,
@@ -72,10 +74,27 @@ iniciarApp();
 function iniciarApp() {    
     inputFactura.forEach(function (item) {
         item.addEventListener('change', clickFactura)});
+
     inputRetencion.forEach(function (item) {
         item.addEventListener('change', clickRetencion)});
+
     btnCalcular.addEventListener('click', calcularRetenciones);
+
     btnLimpiar.addEventListener('click', limpiar);
+
+    dataClose.addEventListener('click', cerrarModal);
+
+    document.addEventListener("click", e => {
+        if (e.target == document.querySelector(".modal.is-visible")) {
+          document.querySelector(".modal.is-visible").classList.remove("is-visible");
+        }
+    });
+      
+    document.addEventListener("keyup", e => {
+        if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
+          document.querySelector(".modal.is-visible").classList.remove("is-visible");
+        }
+    });
 }
 
 function clickFactura(){
@@ -428,4 +447,8 @@ function dosDecimales(numero) {
     let numeroString = numero.toString();
     let regex = /(\d*.\d{0,2})/;
     return Number(numeroString.match(regex)[0]);
+}
+
+function cerrarModal() {
+    this.parentElement.parentElement.classList.remove("is-visible");
 }
