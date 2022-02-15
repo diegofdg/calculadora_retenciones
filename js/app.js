@@ -29,7 +29,8 @@ const btnCalcular = document.getElementById('calcular');
 const btnLimpiar = document.getElementById('limpiar');
 const divResultado = document.getElementById('resultado');
 
-const dataClose = document.querySelector("[data-close]");
+const modal_container = document.getElementById('modal_container');
+const btnCerrarModal = document.getElementById('close');
 
 let objetoFactura = {
     tipo_factura: '',
@@ -82,26 +83,28 @@ function iniciarApp() {
 
     btnLimpiar.addEventListener('click', limpiar);
 
-    dataClose.addEventListener('click', cerrarModal);
+    btnCerrarModal.addEventListener('click', () => {
+        modal_container.classList.remove('show');
+    });
 
-    document.addEventListener("click", e => {
-        if (e.target == document.querySelector(".modal.is-visible")) {
-          document.querySelector(".modal.is-visible").classList.remove("is-visible");
+    document.addEventListener('click', e => {  
+        if (e.target == document.querySelector('.modal-container.show')) {
+            modal_container.classList.remove('show');
         }
     });
-      
-    document.addEventListener("keyup", e => {
-        if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
-          document.querySelector(".modal.is-visible").classList.remove("is-visible");
+    
+    document.addEventListener('keyup', e => {
+        if (e.key == 'Escape' && document.querySelector('.modal-container.show')) {
+            modal_container.classList.remove('show');
         }
     });
 }
 
 function clickFactura(){
     if(tipoFactura.value === 'fb') {
-        objetoFactura.tipo_factura = 'fb';
+        objetoFactura.tipo_factura = 'Factura B';
     } else if (tipoFactura.value === 'fc') {
-        objetoFactura.tipo_factura = 'fc';
+        objetoFactura.tipo_factura = 'Factura C';
     }
 }
 
@@ -163,14 +166,16 @@ function mostrarIIBB() {
     fieldsetPPLL.classList.add('ocultar');
     objetoFactura.ppll.se_calcula = false;
 
-    if(objetoFactura.tipo_factura === 'fb') {
+    if(objetoFactura.tipo_factura === 'Factura B') {
         iibbFacturaB.classList.remove('ocultar');
         iibbFacturaC.classList.add('ocultar');
 
-    } else if(objetoFactura.tipo_factura === 'fc') {
+    } else if(objetoFactura.tipo_factura === 'Factura C') {
         iibbFacturaB.classList.add('ocultar');
         iibbFacturaC.classList.remove('ocultar');
     }
+    bloquearCampos();
+
 }
 
 function mostrarIVA() {
@@ -192,15 +197,16 @@ function mostrarIVA() {
     fieldsetPPLL.classList.add('ocultar');
     objetoFactura.ppll.se_calcula = false;
 
-    if(objetoFactura.tipo_factura === 'fb') {
+    if(objetoFactura.tipo_factura === 'Factura B') {
         ivaFacturaB.classList.remove('ocultar');
 
-    } else if(objetoFactura.tipo_factura === 'fc') {
+    } else if(objetoFactura.tipo_factura === 'Factura C') {
         tipoRetencion.options.item(0).selected = 'selected';
         fieldsetIVA.classList.add('ocultar');
         objetoFactura.iva.se_calcula = false;
         alert('Error: no se puede calcular retención de IVA a una Factura C');
     }
+    bloquearCampos();
 }
 
 function mostrarGCIAS() {
@@ -222,15 +228,16 @@ function mostrarGCIAS() {
     fieldsetPPLL.classList.add('ocultar');
     objetoFactura.ppll.se_calcula = false;
 
-    if(objetoFactura.tipo_factura === 'fb') {
+    if(objetoFactura.tipo_factura === 'Factura B') {
         gciasFacturaB.classList.remove('ocultar');
 
-    } else if(objetoFactura.tipo_factura === 'fc') {
+    } else if(objetoFactura.tipo_factura === 'Factura C') {
         tipoRetencion.options.item(0).selected = 'selected';
         fieldsetGCIAS.classList.add('ocultar');
         objetoFactura.gcias.se_calcula = false;
         alert('Error: no se puede calcular retención de Ganancias a una Factura C');
     }
+    bloquearCampos();
 }
 
 function mostrarSELLOS() {    
@@ -253,6 +260,7 @@ function mostrarSELLOS() {
     objetoFactura.ppll.se_calcula = false;
     
     sellosFactura.classList.remove('ocultar');
+    bloquearCampos();
 }
 
 function mostrarSUSS() {    
@@ -274,15 +282,16 @@ function mostrarSUSS() {
     fieldsetPPLL.classList.add('ocultar');
     objetoFactura.ppll.se_calcula = false;
 
-    if(objetoFactura.tipo_factura === 'fb') {
+    if(objetoFactura.tipo_factura === 'Factura B') {
         sussFacturaB.classList.remove('ocultar');
 
-    } else if(objetoFactura.tipo_factura === 'fc') {
+    } else if(objetoFactura.tipo_factura === 'Factura C') {
         tipoRetencion.options.item(0).selected = 'selected';
         fieldsetSUSS.classList.add('ocultar');
         objetoFactura.suss.se_calcula = false;
         alert('Error: no se puede calcular retención de SUSS a una Factura C');
     }
+    bloquearCampos();
 }
 
 function mostrarPPLL() {
@@ -304,14 +313,15 @@ function mostrarPPLL() {
     fieldsetSUSS.classList.add('ocultar');
     objetoFactura.suss.se_calcula = false;
 
-    if(objetoFactura.tipo_factura === 'fb') {
+    if(objetoFactura.tipo_factura === 'Factura B') {
         ppllFacturaB.classList.remove('ocultar');
         ppllFacturaC.classList.add('ocultar');
 
-    } else if(objetoFactura.tipo_factura === 'fc') {
+    } else if(objetoFactura.tipo_factura === 'Factura C') {
         ppllFacturaB.classList.add('ocultar');
         ppllFacturaC.classList.remove('ocultar');
     }
+    bloquearCampos();
 }
 
 function limpiar() {    
@@ -424,7 +434,7 @@ function calcularRetenciones() {
 }
 
 function validarTipoFactura() {
-    if(objetoFactura.tipo_factura === 'fb' || objetoFactura.tipo_factura === 'fc') {
+    if(objetoFactura.tipo_factura === 'Factura B' || objetoFactura.tipo_factura === 'Factura C') {
         return true;
     } else {
         alert('Por favor, elige un tipo de Factura');
@@ -447,8 +457,4 @@ function dosDecimales(numero) {
     let numeroString = numero.toString();
     let regex = /(\d*.\d{0,2})/;
     return Number(numeroString.match(regex)[0]);
-}
-
-function cerrarModal() {
-    this.parentElement.parentElement.classList.remove("is-visible");
 }

@@ -1,5 +1,5 @@
 function retencionesIIBB() {
-    if(objetoFactura.tipo_factura === 'fb') {
+    if(objetoFactura.tipo_factura === 'Factura B') {
         objetoFactura.iibb.tipo_operacion = document.getElementById('tipo-operacion-iibb-fb').value;
         objetoFactura.iibb.alicuotaIVA = document.getElementById('alicuota-iva').value;
         objetoFactura.iibb.tipo_inscripcion = document.getElementById('inscripcion-iibb').value;        
@@ -65,7 +65,7 @@ function retencionesIIBB() {
         document.getElementById('inscripcion-iibb').options.item(0).selected = 'selected';
         tipoRetencion.options.item(0).selected = 'selected';
 
-    } else if (objetoFactura.tipo_factura === 'fc') {
+    } else if (objetoFactura.tipo_factura === 'Factura C') {
         objetoFactura.iibb.tipo_operacion = document.getElementById('tipo-operacion-iibb-fc').value;
         
         const { monto_factura } = objetoFactura;
@@ -165,7 +165,7 @@ function imprimirResultadoIIBB2() {
 }
 
 function imprimirResultadoIIBB() {
-    const divResultadoAnterior = document.querySelector('#resultado div');
+    const divResultadoAnterior = document.querySelector('.contenido-modal');
     if(divResultadoAnterior !== null) {
         divResultadoAnterior.remove();
     }
@@ -176,33 +176,35 @@ function imprimirResultadoIIBB() {
     nuevoDiv.classList.add('contenido-modal');
     
     const tipoDeFacturaP = document.createElement('LI');      
-    tipoDeFacturaP.innerHTML = `Tipo de Factura: <span>${objetoFactura.tipo_factura}</span>`;
+    tipoDeFacturaP.innerHTML = `Tipo de Comprobante: <span>${objetoFactura.tipo_factura}</span>`;
     nuevoDiv.appendChild(tipoDeFacturaP);
 
     const montoFacturaP = document.createElement('LI');      
-    montoFacturaP.innerHTML = `Monto de la Factura: <span>${objetoFactura.monto_factura}</span>`;    
+    montoFacturaP.innerHTML = `Monto de la Factura: <span>$ ${objetoFactura.monto_factura.toFixed(2)}</span>`;    
     nuevoDiv.appendChild(montoFacturaP);
 
     const bienesServiciosP = document.createElement('LI');      
-    bienesServiciosP.innerHTML = `<span>${objetoFactura.iibb.tipo_operacion}</span>`;    
+    bienesServiciosP.innerHTML = `Tipo de operación: <span>${objetoFactura.iibb.tipo_operacion}</span>`;    
     nuevoDiv.appendChild(bienesServiciosP);
 
-    const alicuotaIVAP = document.createElement('LI');      
-    alicuotaIVAP.innerHTML = `<span>${objetoFactura.iibb.alicuotaIVA}</span>`;    
-    nuevoDiv.appendChild(alicuotaIVAP);
-
-    const inscripcionIIBBp = document.createElement('LI');      
-    inscripcionIIBBp.innerHTML = `<span>${objetoFactura.iibb.tipo_inscripcion}</span>`;    
-    nuevoDiv.appendChild(inscripcionIIBBp);
+    if(objetoFactura.tipo_factura === 'Factura B') {
+        const alicuotaIVAP = document.createElement('LI');      
+        alicuotaIVAP.innerHTML = `Alícuota de IVA: <span>${objetoFactura.iibb.alicuotaIVA}</span>`;    
+        nuevoDiv.appendChild(alicuotaIVAP);
+    
+        const inscripcionIIBBp = document.createElement('LI');      
+        inscripcionIIBBp.innerHTML = `Tipo de Inscripción: <span>${objetoFactura.iibb.tipo_inscripcion}</span>`;    
+        nuevoDiv.appendChild(inscripcionIIBBp);
+    }
 
     const montoRetencionP = document.createElement('LI');      
-    montoRetencionP.innerHTML = `<span>${objetoFactura.iibb.monto_retencion_iibb}</span>`;    
+    montoRetencionP.innerHTML = `Monto de la retención: <span>$ ${objetoFactura.iibb.monto_retencion_iibb.toFixed(2)}</span>`;    
     nuevoDiv.appendChild(montoRetencionP);
     
     modalResultado.appendChild(nuevoDiv);
 
     /* const modalId = this.dataset.open; */
-    document.getElementById('modal').classList.add('is-visible');
+    document.getElementById('modal_container').classList.add('show');
     
 
 }
