@@ -400,6 +400,12 @@ function limpiar() {
 
 function bloquearCampos() {
     tipoFactura.setAttribute('disabled', 'true');
+    const monto = dosDecimales(inputMonto.value).toFixed(2);
+    console.log(monto);
+    
+    
+    inputMonto.value = monto;
+
     inputMonto.disabled = true;              
 }
 
@@ -457,4 +463,26 @@ function dosDecimales(numero) {
     let numeroString = numero.toString();
     let regex = /(\d*.\d{0,2})/;
     return Number(numeroString.match(regex)[0]);
+}
+
+function formatearNumeros(numero) {
+    const separador = ".";
+    const separadorDecimal = ',';
+    const simbol = '$ ';
+
+    let numeroInicial = dosDecimales(numero).toFixed(2);
+    numeroInicial += '';
+
+    const splitString = numeroInicial.split('.');
+    let splitLeft = splitString[0];
+    let splitRight = splitString.length > 1 ? separadorDecimal + splitString[1] : '';
+    const regx = /(\d+)(\d{3})/;
+
+    while (regx.test(splitLeft)) {
+        splitLeft = splitLeft.replace(regx, '$1' + separador + '$2');
+    }
+    
+    const numeroFinal = simbol + splitLeft +splitRight;
+    
+    return numeroFinal;
 }

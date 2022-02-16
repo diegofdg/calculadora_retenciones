@@ -180,7 +180,7 @@ function imprimirResultadoIIBB() {
     nuevoDiv.appendChild(tipoDeFacturaP);
 
     const montoFacturaP = document.createElement('LI');      
-    montoFacturaP.innerHTML = `Monto de la Factura: <span>$ ${objetoFactura.monto_factura.toFixed(2)}</span>`;    
+    montoFacturaP.innerHTML = `Monto de la Factura: <span> ${formatearNumeros(objetoFactura.monto_factura)}</span>`;    
     nuevoDiv.appendChild(montoFacturaP);
 
     const bienesServiciosP = document.createElement('LI');      
@@ -198,7 +198,7 @@ function imprimirResultadoIIBB() {
     }
 
     const montoRetencionP = document.createElement('LI');      
-    montoRetencionP.innerHTML = `Monto de la retención: <span>$ ${objetoFactura.iibb.monto_retencion_iibb.toFixed(2)}</span>`;    
+    montoRetencionP.innerHTML = `Monto de la retención: <span> ${formatearNumeros(objetoFactura.iibb.monto_retencion_iibb)}</span>`;    
     nuevoDiv.appendChild(montoRetencionP);
     
     modalResultado.appendChild(nuevoDiv);
