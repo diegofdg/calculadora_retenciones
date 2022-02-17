@@ -84,18 +84,15 @@ function iniciarApp() {
     btnLimpiar.addEventListener('click', limpiar);
 
     btnCerrarModal.addEventListener('click', () => {
+        limpiarObjeto();
         modal_container.classList.remove('show');
     });
 
-    document.addEventListener('click', e => {  
-        if (e.target == document.querySelector('.modal-container.show')) {
-            modal_container.classList.remove('show');
-        }
-    });
-    
     document.addEventListener('keyup', e => {
         if (e.key == 'Escape' && document.querySelector('.modal-container.show')) {
+            limpiarObjeto();
             modal_container.classList.remove('show');
+
         }
     });
 }
@@ -137,7 +134,7 @@ function clickRetencion() {
                     break;
     
                 default:
-                    alert('Por favor, elige una retención para calcular');
+                    imprimirError('Por favor, elige una retención para calcular');
             }
         } else {
             tipoRetencion.options.item(0).selected = 'selected';
@@ -204,7 +201,7 @@ function mostrarIVA() {
         tipoRetencion.options.item(0).selected = 'selected';
         fieldsetIVA.classList.add('ocultar');
         objetoFactura.iva.se_calcula = false;
-        alert('Error: no se puede calcular retención de IVA a una Factura C');
+        imprimirError('Error: no se puede calcular retención de IVA a una Factura C');
     }
     bloquearCampos();
 }
@@ -234,8 +231,8 @@ function mostrarGCIAS() {
     } else if(objetoFactura.tipo_factura === 'Factura C') {
         tipoRetencion.options.item(0).selected = 'selected';
         fieldsetGCIAS.classList.add('ocultar');
-        objetoFactura.gcias.se_calcula = false;
-        alert('Error: no se puede calcular retención de Ganancias a una Factura C');
+        objetoFactura.gcias.se_calcula = false;        
+        imprimirError('Error: no se puede calcular retención de Ganancias a una Factura C');
     }
     bloquearCampos();
 }
@@ -289,7 +286,7 @@ function mostrarSUSS() {
         tipoRetencion.options.item(0).selected = 'selected';
         fieldsetSUSS.classList.add('ocultar');
         objetoFactura.suss.se_calcula = false;
-        alert('Error: no se puede calcular retención de SUSS a una Factura C');
+        imprimirError('Error: no se puede calcular retención de SUSS a una Factura C');
     }
     bloquearCampos();
 }
@@ -400,12 +397,8 @@ function limpiar() {
 
 function bloquearCampos() {
     tipoFactura.setAttribute('disabled', 'true');
-    const monto = dosDecimales(inputMonto.value).toFixed(2);
-    console.log(monto);
-    
-    
+    const monto = dosDecimales(inputMonto.value).toFixed(2);    
     inputMonto.value = monto;
-
     inputMonto.disabled = true;              
 }
 
@@ -433,7 +426,7 @@ function calcularRetenciones() {
                 retencionesPPLL();
 
             } else {
-                alert('Por favor, elige una retención para calcular');
+                imprimirError('Por favor, elige una retención para calcular');
             }
         }
     }
@@ -443,7 +436,7 @@ function validarTipoFactura() {
     if(objetoFactura.tipo_factura === 'Factura B' || objetoFactura.tipo_factura === 'Factura C') {
         return true;
     } else {
-        alert('Por favor, elige un tipo de Factura');
+        imprimirError('Por favor, elige un tipo de Factura');
         return false;
     }
 }
@@ -452,7 +445,7 @@ function validarMonto() {
     montoFactura = inputMonto.value;    
 
     if( montoFactura === '' || montoFactura === null || isNaN(montoFactura) || montoFactura <= 0 ) {        
-        alert('Por favor, escribe el monto de la Factura');
+        imprimirError('Por favor, escribe el monto de la Factura');
         return false;
     }
     objetoFactura.monto_factura = dosDecimales(montoFactura);    
@@ -485,4 +478,79 @@ function formatearNumeros(numero) {
     const numeroFinal = simbol + splitLeft +splitRight;
     
     return numeroFinal;
+}
+
+function limpiarObjeto() {
+    objetoFactura = {
+        tipo_factura: '',
+        monto_factura: 0,
+        iibb: {
+            se_calcula: false,
+            tipo_operacion: '',
+            alicuotaIVA: '',
+            tipo_inscripcion: '',
+            monto_retencion_iibb: 0
+        },
+        iva: {
+            se_calcula: false,
+            tipo_operacion: '',        
+            monto_retencion_iva: 0
+        },
+        gcias: {
+            se_calcula: false,
+            tipo_operacion: '',        
+            monto_retencion_gcias: 0
+        },
+        suss: {
+            se_calcula: false,
+            tipo_operacion: '',
+            alicuotaIVA: '',        
+            monto_retencion_suss: 0
+        },
+        sellos: {
+            se_calcula: false,
+            tipo_operacion: '',        
+            monto_retencion_sellos: 0
+        },
+        ppll: {
+            se_calcula: false,
+            tipo_operacion: '',        
+            monto_retencion_ppll: 0
+        }
+    }
+    if(tipoFactura.value === 'fb') {
+        objetoFactura.tipo_factura = 'Factura B';
+    } else if (tipoFactura.value === 'fc') {
+        objetoFactura.tipo_factura = 'Factura C';
+    }
+    if(validarMonto()) {
+        objetoFactura.monto_factura = dosDecimales(montoFactura);
+    }
+
+}
+
+
+function imprimirError(mensaje) {    
+    const divResultadoAnterior = document.querySelector('.contenido-modal');
+    if(divResultadoAnterior !== null) {
+        divResultadoAnterior.remove();
+    }
+
+    const tituloModal = document.getElementById('titulo-modal');
+    tituloModal.innerHTML = "Error:"
+
+    const modalResultado = document.getElementById('resultado-modal');
+
+    const nuevoDiv = document.createElement('DIV'); 
+    nuevoDiv.classList.add('contenido-modal');
+
+    const mensajeError = document.createElement('P');
+    mensajeError.classList.add('mensaje-error');
+    mensajeError.innerHTML = mensaje;
+
+    nuevoDiv.appendChild(mensajeError);
+
+    modalResultado.appendChild(nuevoDiv);
+
+    document.getElementById('modal_container').classList.add('show');
 }
