@@ -27,7 +27,7 @@ function retencionesGCIAS() {
             imprimirResultadoGCIAS(false, 'No se calcula la retención por encontrarse la operación excluída del régimen');
         }    
 
-    } else if (objetoFactura.tipo_factura === 'fc') {
+    } else if (objetoFactura.tipo_factura === 'Factura C') {
         imprimirResultadoGCIAS(false, 'No se calcula la retención por tratarse de una Factura C');        
     }
     document.getElementById('tipo-operacion-gcias-fb').options.item(0).selected = 'selected';    
