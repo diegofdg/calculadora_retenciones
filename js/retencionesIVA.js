@@ -29,7 +29,7 @@
         }    
 
     } else if (objetoFactura.tipo_factura === 'Factura C') {
-        imprimirResultadoGCIAS(false, 'No se calcula la retención por tratarse de una Factura C');
+        imprimirResultadoIVA(false, 'No se calcula la retención por tratarse de una Factura C');
     }
 
     document.getElementById('tipo-operacion-iva-fb').options.item(0).selected = 'selected';    

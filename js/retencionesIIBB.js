@@ -198,7 +198,6 @@ function imprimirResultadoIIBB(tipo = true, mensaje = '') {
 function guardarDatosIIBB(tipo_factura) {
     if(tipo_factura === 'fb') {
         const tipo_operacion = document.getElementById('tipo-operacion-iibb-fb').value;
-
         if(tipo_operacion === 'bienes') {
             objetoFactura.iibb.tipo_operacion = 'Compras de Bienes';
         } else if (tipo_operacion === 'servicios') {
