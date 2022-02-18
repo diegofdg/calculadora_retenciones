@@ -87,7 +87,7 @@ function retencionesIIBB() {
             imprimirResultadoIIBB();
             
         } else if(tipo_operacion === 'Excluído del Régimen') {
-            alert('No se retiene, está excluido del régimen');            
+            imprimirResultadoIIBB(false, 'No se retiene, está excluido del régimen');            
             montoRetencion = 0;
         }
         document.getElementById('tipo-operacion-iibb-fc').options.item(0).selected = 'selected';
@@ -131,6 +131,9 @@ function imprimirResultadoIIBB(tipo = true, mensaje = '') {
             divResultadoAnterior.remove();
         }
 
+        const tituloModal = document.getElementById('titulo-modal');
+        tituloModal.innerHTML = 'Resultado:'
+
         const modalResultado = document.getElementById('resultado-modal');
 
         const nuevoDiv = document.createElement('DIV'); 
@@ -173,7 +176,7 @@ function imprimirResultadoIIBB(tipo = true, mensaje = '') {
         }
 
         const tituloModal = document.getElementById('titulo-modal');
-        tituloModal.innerHTML = "Error:"
+        tituloModal.innerHTML = 'Error:'
 
         const modalResultado = document.getElementById('resultado-modal');
 
