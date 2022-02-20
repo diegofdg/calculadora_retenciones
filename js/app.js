@@ -27,7 +27,6 @@ const ppllFacturaC = document.getElementById('ppll-factura-c');
 
 const btnCalcular = document.getElementById('calcular');
 const btnLimpiar = document.getElementById('limpiar');
-const divResultado = document.getElementById('resultado');
 
 const modal_container = document.getElementById('modal_container');
 const btnCerrarModal = document.getElementById('close');
@@ -92,7 +91,6 @@ function iniciarApp() {
         if (e.key == 'Escape' && document.querySelector('.modal-container.show')) {
             limpiarObjeto();
             modal_container.classList.remove('show');
-
         }
     });
 }
@@ -171,8 +169,8 @@ function mostrarIIBB() {
         iibbFacturaB.classList.add('ocultar');
         iibbFacturaC.classList.remove('ocultar');
     }
-    bloquearCampos();
 
+    bloquearCampos();
 }
 
 function mostrarIVA() {
@@ -234,6 +232,7 @@ function mostrarGCIAS() {
         objetoFactura.gcias.se_calcula = false;        
         imprimirError('Error: no se puede calcular retención de Ganancias a una Factura C');
     }
+
     bloquearCampos();
 }
 
@@ -257,6 +256,7 @@ function mostrarSELLOS() {
     objetoFactura.ppll.se_calcula = false;
     
     sellosFactura.classList.remove('ocultar');
+
     bloquearCampos();
 }
 
@@ -288,6 +288,7 @@ function mostrarSUSS() {
         objetoFactura.suss.se_calcula = false;
         imprimirError('Error: no se puede calcular retención de SUSS a una Factura C');
     }
+
     bloquearCampos();
 }
 
@@ -318,6 +319,7 @@ function mostrarPPLL() {
         ppllFacturaB.classList.add('ocultar');
         ppllFacturaC.classList.remove('ocultar');
     }
+
     bloquearCampos();
 }
 
@@ -348,13 +350,6 @@ function limpiar() {
     fieldsetPPLL.classList.add('ocultar');
     ppllFacturaB.classList.add('ocultar');
     ppllFacturaC.classList.add('ocultar');
-
-    const divResultadoAnterior = document.querySelector('#resultado div');
-    if(divResultadoAnterior !== null) {
-        divResultadoAnterior.remove();
-    }
-
-    divResultado.style.display = 'none'
 
     objetoFactura = {
         tipo_factura: '',
@@ -518,15 +513,16 @@ function limpiarObjeto() {
             monto_retencion_ppll: 0
         }
     }
+
     if(tipoFactura.value === 'fb') {
         objetoFactura.tipo_factura = 'Factura B';
     } else if (tipoFactura.value === 'fc') {
         objetoFactura.tipo_factura = 'Factura C';
     }
+
     if(validarMonto()) {
         objetoFactura.monto_factura = dosDecimales(montoFactura);
     }
-
 }
 
 

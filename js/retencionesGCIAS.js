@@ -64,35 +64,6 @@ function calcularRetencionesGCIAS(monto,alicuota,mni,tasa,minimo){
     }
 }
 
-function imprimirResultadoGCIAS2() {
-    const divResultadoAnterior = document.querySelector('#resultado div');
-    if(divResultadoAnterior !== null) {
-        divResultadoAnterior.remove();
-    }
-
-    divResultado.style.display = 'block';
-
-    const nuevoDiv = document.createElement('DIV');    
-    
-    const tipoDeFacturaP = document.createElement('P');      
-    tipoDeFacturaP.textContent = `Tipo de Factura: ${objetoFactura.tipo_factura}`;
-    nuevoDiv.appendChild(tipoDeFacturaP);
-
-    const montoFacturaP = document.createElement('P');      
-    montoFacturaP.innerHTML = `Monto de la Factura: <span>${objetoFactura.monto_factura}</span>`;    
-    nuevoDiv.appendChild(montoFacturaP);
-
-    const bienesServiciosP = document.createElement('P');      
-    bienesServiciosP.innerHTML = `<span>${objetoFactura.gcias.tipo_operacion}</span>`;    
-    nuevoDiv.appendChild(bienesServiciosP);
-
-    const montoRetencionP = document.createElement('P');      
-    montoRetencionP.innerHTML = `<span>${objetoFactura.gcias.monto_retencion_gcias}</span>`;    
-    nuevoDiv.appendChild(montoRetencionP);
-    
-    divResultado.appendChild(nuevoDiv);
-}
-
 function imprimirResultadoGCIAS(tipo = true, mensaje = '') {
     if(tipo === true) {
         const divResultadoAnterior = document.querySelector('.contenido-modal');

@@ -16,7 +16,7 @@ function retencionesPPLL() {
             objetoFactura.ppll.monto_retencion_ppll = calcularRetencionesPPLL(monto_factura, 1.21, 0.06);
             imprimirResultadoPPLL();    
         } else if(tipo_operacion === 'Excluído del Régimen') {
-            imprimirResultadoIIBB(false, 'No se calcula la retención por encontrarse la operación excluída del régimen');
+            imprimirResultadoPPLL(false, 'No se calcula la retención por encontrarse la operación excluída del régimen');
         }
 
         document.getElementById('tipo-operacion-ppll-fb').options.item(0).selected = 'selected';
@@ -24,17 +24,13 @@ function retencionesPPLL() {
 
 
     } else if (objetoFactura.tipo_factura === 'Factura C') {
-        console.log('factura c');
-        
         guardarDatosPPLL('fc');
 
         const { monto_factura } = objetoFactura;
         const { ppll } = objetoFactura;
         const { tipo_operacion } = ppll;
 
-        if(tipo_operacion === 'Servicios Comunes') {
-            console.log('servicios comunes');
-            
+        if(tipo_operacion === 'Servicios Comunes') {            
             objetoFactura.ppll.monto_retencion_ppll = calcularRetencionesPPLL(monto_factura, 1, 0.02);
             imprimirResultadoPPLL();    
         } else if(tipo_operacion === 'Contrato Locación Obra') {
@@ -44,12 +40,11 @@ function retencionesPPLL() {
             objetoFactura.ppll.monto_retencion_ppll = calcularRetencionesPPLL(monto_factura, 1, 0.06);
             imprimirResultadoPPLL();    
         } else if(tipo_operacion === 'Excluído del Régimen') {
-            imprimirResultadoIIBB(false, 'No se calcula la retención por encontrarse la operación excluída del régimen');
+            imprimirResultadoPPLL(false, 'No se calcula la retención por encontrarse la operación excluída del régimen');
         }
 
         document.getElementById('tipo-operacion-ppll-fc').options.item(0).selected = 'selected';
-        tipoRetencion.options.item(0).selected = 'selected';        
-     
+        tipoRetencion.options.item(0).selected = 'selected';     
     }
 
     fieldsetIIBB.classList.add('ocultar');
@@ -71,8 +66,7 @@ function retencionesPPLL() {
     fieldsetPPLL.classList.add('ocultar');
     ppllFacturaB.classList.add('ocultar');
     ppllFacturaC.classList.add('ocultar');
-    
-            
+                
     document.getElementById('tipo-operacion-sellos').options.item(0).selected = 'selected';    
     tipoRetencion.options.item(0).selected = 'selected';    
     

@@ -1,6 +1,5 @@
  function retencionesIVA() {
-    if(objetoFactura.tipo_factura === 'Factura B') {
-        
+    if(objetoFactura.tipo_factura === 'Factura B') {        
         guardarDatosIVA();
         
         const { monto_factura } = objetoFactura;
